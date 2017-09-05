@@ -13,12 +13,12 @@ public class CNLocalDateFormatter implements Formatter<LocalDate> {
 
     @Override
     public LocalDate parse(String text, Locale locale) throws ParseException {
-        return LocalDate.parse(text, DateTimeFormatter.ofPattern(CN_PATTERN));
+        return LocalDate.parse(text, DateTimeFormatter.ofPattern(getPattern(locale)));
     }
 
     @Override
     public String print(LocalDate object, Locale locale) {
-        return DateTimeFormatter.ofPattern(CN_PATTERN).format(object);
+        return DateTimeFormatter.ofPattern(getPattern(locale)).format(object);
     }
     public static String getPattern(Locale locale) {
         return  isChina(locale)? CN_PATTERN:NORMAL_PATTERN;
