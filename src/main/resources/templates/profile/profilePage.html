@@ -30,7 +30,7 @@
             </div>
             <div class="row">
                 <div class="input-field col s6">
-                    <input th:value="${profileForm.birthDate}" id="birthDate" name="birthDate"
+                    <input th:field="${profileForm.birthDate}" id="birthDate" name="birthDate"
                            type="text" th:errorclass="invalid"
                     th:placeholder="${dateFormat}"/>
                     <label for="birthDate" th:text="#{birthdate}">Birth Date</label>
