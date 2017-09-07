@@ -49,7 +49,9 @@ public class ProfileForm {
     public List<String> getTastes() {
         return tastes;
     }
-
+    public void setTastes(List<String> tastes) {
+        this.tastes = tastes;
+    }
     @Override
     public String toString() {
         return "ProfileForm{" +
@@ -59,4 +61,6 @@ public class ProfileForm {
                 ", tastes=[" + String.join(",", tastes)  + "]"+
                 '}';
     }
+
+
 }

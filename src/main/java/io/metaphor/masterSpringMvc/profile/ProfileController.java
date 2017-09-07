@@ -1,6 +1,7 @@
 package io.metaphor.masterSpringMvc.profile;
 
 import io.metaphor.masterSpringMvc.date.CNLocalDateFormatter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,13 +14,22 @@ import java.util.Locale;
 
 @Controller
 public class ProfileController {
+    private UserProfileSession userProfileSession;
+    @Autowired
+    public ProfileController(UserProfileSession userProfileSession) {
+        this.userProfileSession = userProfileSession;
+    }
+    @ModelAttribute("profileForm")
+    public ProfileForm getProfileForm(){
+        return userProfileSession.toForm();
+    }
     @ModelAttribute("dateFormat")
     public String localFormat(Locale locale) {
         return CNLocalDateFormatter.getPattern(locale);
     }
 
     @RequestMapping("/profile")
-    public String dispalyProfile(ProfileForm profileForm){
+    public String displayProfile(){
         return "profile/profilePage";
     }
 
@@ -28,7 +38,7 @@ public class ProfileController {
         if(bindingResult.hasErrors()) {
             return "profile/profilePage";
         }
-        System.out.println("save ok" + profileForm);
+        userProfileSession.saveForm(profileForm);
         return "redirect:/profile";
     }
     @RequestMapping(value ="/profile",params = {"addTaste"})
