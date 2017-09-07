@@ -3,6 +3,7 @@ package io.metaphor.masterSpringMvc.profile;
 import io.metaphor.masterSpringMvc.config.PictureUploadProperties;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Controller;
@@ -17,20 +18,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.URLConnection;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.util.Locale;
 
 @Controller
 @SessionAttributes("picturePath")
 public class PictureUploadController {
     private final Resource picturesDir;
     private final Resource anonymousPicture;
+    private final MessageSource messageSource;
 
     @Autowired
-    public PictureUploadController(PictureUploadProperties uploadProperties) {
+    public PictureUploadController(PictureUploadProperties uploadProperties, MessageSource messageSource) {
         this.picturesDir = uploadProperties.getUploadPath();
         this.anonymousPicture = uploadProperties.getAnonymousPicture();
+        this.messageSource = messageSource;
     }
     @ModelAttribute("picturePath")
     public Resource picturePath(){
@@ -63,16 +64,16 @@ public class PictureUploadController {
         IOUtils.copy(picturePath.getInputStream(),response.getOutputStream());
     }
     @ExceptionHandler(IOException.class)
-    public ModelAndView handleIOException(IOException exception) {
+    public ModelAndView handleIOException(Locale locale) {
         ModelAndView modelAndView = new ModelAndView("profile/uploadPage");
-        modelAndView.addObject("error",exception.getMessage());
+        modelAndView.addObject("error",messageSource.getMessage("upload.io.exception",null,locale));
         return modelAndView;
     }
 
     @RequestMapping("uploadError")
-    public ModelAndView onUploadError(HttpServletRequest request) {
+    public ModelAndView onUploadError(Locale locale) {
         ModelAndView modelAndView = new ModelAndView("profile/uploadPage");
-        modelAndView.addObject("error",request.getAttribute(WebUtils.ERROR_MESSAGE_ATTRIBUTE));
+        modelAndView.addObject("error",messageSource.getMessage("upload.file.too.big",null,locale));
         return modelAndView;
     }
     private boolean isImage(MultipartFile file) {
