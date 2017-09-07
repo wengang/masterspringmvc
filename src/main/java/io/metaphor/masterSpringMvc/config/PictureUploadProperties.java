@@ -22,7 +22,7 @@ public class PictureUploadProperties {
     }
 
     public void setUploadPath(String uploadPath) {
-        this.anonymousPicture = new DefaultResourceLoader().getResource(uploadPath);
+        this.uploadPath = new DefaultResourceLoader().getResource(uploadPath);
 
     }
 }
