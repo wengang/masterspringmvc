@@ -1,7 +1,10 @@
 package io.metaphor.masterSpringMvc.controller;
 
+import io.metaphor.masterSpringMvc.profile.ProfileForm;
+import io.metaphor.masterSpringMvc.profile.UserProfileSession;
 import io.metaphor.masterSpringMvc.viewModel.Tweet;
 import io.metaphor.masterSpringMvc.viewModel.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,8 +21,10 @@ import java.util.stream.Collectors;
 @Controller
 public class TweetController {
     private Tweet[] _tweets={};
-
-    public TweetController() {
+    private UserProfileSession userProfileSession;
+    @Autowired
+    public TweetController(UserProfileSession userProfileSession) {
+        this.userProfileSession = userProfileSession;
         List<Tweet> tweets=new ArrayList<>();
         tweets.add(new Tweet(new User("http://icon.nipic.com/BannerPic/20170731/original/20170731105950_1.jpg","guli"),"go player,8 times win gold"));
         tweets.add(new Tweet(new User("http://icon.nipic.com/BannerPic/20170731/original/20170731105950_1.jpg","kejie"),"go player,4 times win gold"));
@@ -30,6 +35,10 @@ public class TweetController {
     }
     @RequestMapping("/")
     public String home() {
+        ProfileForm profileForm = userProfileSession.toForm();
+        if(profileForm.getTastes().isEmpty()){
+            return "redirect:/profile";
+        }
         return "searchPage";
     }
     @RequestMapping(value = "/postSearch",method = RequestMethod.POST)

@@ -38,23 +38,22 @@ public class PictureUploadController {
         return anonymousPicture;
     }
 
-    @RequestMapping("upload")
-    public String uploadPage() {
-        return "profile/uploadPage";
-    }
+//    @RequestMapping("upload")
+//    public String uploadPage() {
+//        return "profile/uploadPage";
+//    }
 
     @RequestMapping(value = "upload",method = RequestMethod.POST)
     public String onUpload(MultipartFile file, RedirectAttributes redirectAttributes,
                            Model model) throws IOException {
-        throw new IOException("Some message");
-//        if(file.isEmpty() || !isImage(file)) {
-//            redirectAttributes.addFlashAttribute("error","Incorrect file. " +
-//                    "Please upload a picture.");
-//            return "redirect:/upload";
-//        }
-//        Resource picturePath = copyFileToPictrues(file);
-//        model.addAttribute("picturePath",picturePath);
-//        return "profile/uploadPage";
+        if(file.isEmpty() || !isImage(file)) {
+            redirectAttributes.addFlashAttribute("error","Incorrect file. " +
+                    "Please upload a picture.");
+            return "redirect:/profile";
+        }
+        Resource picturePath = copyFileToPictrues(file);
+        model.addAttribute("picturePath",picturePath);
+        return "redirect:/profile";
     }
     @RequestMapping(value = "/uploadedPicture")
     public void getUploadedPicture(HttpServletResponse response,
@@ -65,14 +64,14 @@ public class PictureUploadController {
     }
     @ExceptionHandler(IOException.class)
     public ModelAndView handleIOException(Locale locale) {
-        ModelAndView modelAndView = new ModelAndView("profile/uploadPage");
+        ModelAndView modelAndView = new ModelAndView("redirect:profile");
         modelAndView.addObject("error",messageSource.getMessage("upload.io.exception",null,locale));
         return modelAndView;
     }
 
     @RequestMapping("uploadError")
     public ModelAndView onUploadError(Locale locale) {
-        ModelAndView modelAndView = new ModelAndView("profile/uploadPage");
+        ModelAndView modelAndView = new ModelAndView("redirect:profile");
         modelAndView.addObject("error",messageSource.getMessage("upload.file.too.big",null,locale));
         return modelAndView;
     }
