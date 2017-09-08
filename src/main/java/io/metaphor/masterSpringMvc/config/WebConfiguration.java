@@ -59,6 +59,7 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
         UrlPathHelper urlPathHelper = new UrlPathHelper();
         urlPathHelper.setRemoveSemicolonContent(false);
         configurer.setUrlPathHelper(urlPathHelper);
+        configurer.setUseRegisteredSuffixPatternMatch(true);
         super.configurePathMatch(configurer);
     }
     @Bean
@@ -69,3 +70,4 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
         return objectMapper;
     }
 }
+

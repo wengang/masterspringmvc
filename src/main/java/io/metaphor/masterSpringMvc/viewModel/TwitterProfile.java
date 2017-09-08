@@ -1,11 +1,11 @@
 package io.metaphor.masterSpringMvc.viewModel;
 
-public class User {
+public class TwitterProfile {
 
     private String profileImageUrl;
     private String name;
 
-    public User(String profileImageUrl, String name) {
+    public TwitterProfile(String profileImageUrl, String name) {
         this.profileImageUrl = profileImageUrl;
         this.name = name;
     }

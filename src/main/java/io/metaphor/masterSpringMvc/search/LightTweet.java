@@ -1,7 +1,7 @@
 package io.metaphor.masterSpringMvc.search;
 
 import io.metaphor.masterSpringMvc.viewModel.Tweet;
-import io.metaphor.masterSpringMvc.viewModel.User;
+import io.metaphor.masterSpringMvc.viewModel.TwitterProfile;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -24,7 +24,7 @@ public class LightTweet {
         if(createAt!=null){
             lightTweet.date = LocalDateTime.ofInstant(createAt.toInstant(), ZoneId.systemDefault());
         }
-        User tweetUser = tweet.getUser();
+        TwitterProfile tweetUser = tweet.getUser();
         if(tweetUser!=null){
             lightTweet.user=tweetUser.getName();
             lightTweet.profileImageUrl=tweetUser.getProfileImageUrl();

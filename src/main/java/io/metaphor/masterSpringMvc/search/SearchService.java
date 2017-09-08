@@ -1,7 +1,7 @@
 package io.metaphor.masterSpringMvc.search;
 
 import io.metaphor.masterSpringMvc.viewModel.Tweet;
-import io.metaphor.masterSpringMvc.viewModel.User;
+import io.metaphor.masterSpringMvc.viewModel.TwitterProfile;
 import org.springframework.stereotype.Service;
 
 import java.text.DateFormat;
@@ -25,21 +25,21 @@ public class SearchService {
             dateTime=calendar.getTime();
             e.printStackTrace();
         }
-        tweets.add(new Tweet(new User("http://icon.nipic.com/BannerPic/20170731/original/20170731105950_1.jpg",
+        tweets.add(new Tweet(new TwitterProfile("http://icon.nipic.com/BannerPic/20170731/original/20170731105950_1.jpg",
                 "guli"),"go player,8 times win gold",dateTime , "zh_CN", 4));
-        tweets.add(new Tweet(new User("http://icon.nipic.com/BannerPic/20170731/original/20170731105950_1.jpg",
+        tweets.add(new Tweet(new TwitterProfile("http://icon.nipic.com/BannerPic/20170731/original/20170731105950_1.jpg",
                 "kejie"),"go player,4 times win gold", dateTime, "zh_CN", 5));
-        tweets.add(new Tweet(new User("http://icon.nipic.com/BannerPic/20170731/original/20170731105950_1.jpg",
+        tweets.add(new Tweet(new TwitterProfile("http://icon.nipic.com/BannerPic/20170731/original/20170731105950_1.jpg",
                 "changhao"),"go player,3 times win gold", dateTime, "zh_CN", 5));
-        tweets.add(new Tweet(new User("http://icon.nipic.com/BannerPic/20170731/original/20170731105950_1.jpg",
+        tweets.add(new Tweet(new TwitterProfile("http://icon.nipic.com/BannerPic/20170731/original/20170731105950_1.jpg",
                 "maxiaochun"),"go player,2 times win gold", dateTime, "zh_CN", 6));
-        tweets.add(new Tweet(new User("http://icon.nipic.com/BannerPic/20170731/original/20170731105950_1.jpg",
+        tweets.add(new Tweet(new TwitterProfile("http://icon.nipic.com/BannerPic/20170731/original/20170731105950_1.jpg",
                 "shiyue"),"go player,1 times win gold", dateTime, "zh_CN", 6));
-        tweets.add(new Tweet(new User("http://icon.nipic.com/BannerPic/20170731/original/20170731105950_1.jpg",
+        tweets.add(new Tweet(new TwitterProfile("http://icon.nipic.com/BannerPic/20170731/original/20170731105950_1.jpg",
                 "xuyinchuan"),"chess player,1 times win gold", dateTime, "zh_CN", 6));
-        tweets.add(new Tweet(new User("http://icon.nipic.com/BannerPic/20170731/original/20170731105950_1.jpg",
+        tweets.add(new Tweet(new TwitterProfile("http://icon.nipic.com/BannerPic/20170731/original/20170731105950_1.jpg",
                 "huronghua"),"chess player,1 times win gold", dateTime, "zh_CN", 6));
-        tweets.add(new Tweet(new User("http://icon.nipic.com/BannerPic/20170731/original/20170731105950_1.jpg",
+        tweets.add(new Tweet(new TwitterProfile("http://icon.nipic.com/BannerPic/20170731/original/20170731105950_1.jpg",
                 "luqing"),"chess player,1 times win gold", dateTime, "zh_CN", 6));
         _tweets=tweets.toArray(_tweets);
     }

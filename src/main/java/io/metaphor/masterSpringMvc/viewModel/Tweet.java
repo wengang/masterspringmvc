@@ -3,13 +3,13 @@ package io.metaphor.masterSpringMvc.viewModel;
 import java.util.Date;
 
 public class Tweet {
-    private  User user;
+    private TwitterProfile user;
     private String text;
     private Date createAt;
     private String languageCode;
     private Integer retweetCount;
 
-    public Tweet(User user, String text, Date createAt, String languageCode, Integer retweetCount) {
+    public Tweet(TwitterProfile user, String text, Date createAt, String languageCode, Integer retweetCount) {
         this.user = user;
         this.text = text;
         this.createAt = createAt;
@@ -17,11 +17,11 @@ public class Tweet {
         this.retweetCount = retweetCount;
     }
 
-    public User getUser() {
+    public TwitterProfile getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(TwitterProfile user) {
         this.user = user;
     }
 
