@@ -34,7 +34,7 @@ public class UserApiController {
         User saved= userRepository.save(user);
         return new ResponseEntity(saved,status);
     }
-    @RequestMapping(value = "/users/{email}",method = RequestMethod.POST)
+    @RequestMapping(value = "/users/{email}",method = RequestMethod.PUT)
     public ResponseEntity<User> updateUser(@PathVariable String email, @RequestBody User user) throws EntityNotFoundException {
         User saved= userRepository.update(email,user);
         return new ResponseEntity(saved,HttpStatus.CREATED);
