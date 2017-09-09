@@ -11,7 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 @Configuration
 @Order(1)
-@EnableGlobalMethodSecurity(securedEnabled = true)
+//@EnableGlobalMethodSecurity(securedEnabled = true)
 public class ApiSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureAuth(AuthenticationManagerBuilder auth) throws Exception {
