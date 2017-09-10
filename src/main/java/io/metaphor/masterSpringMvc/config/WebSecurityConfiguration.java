@@ -10,7 +10,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.formLogin()
+        http.requiresChannel().anyRequest().requiresSecure()
+                .and()
+                .formLogin()
                 .loginPage("/login")
                 .defaultSuccessUrl("/profile")
                 .and()
