@@ -1,6 +1,5 @@
 package io.metaphor.masterSpringMvc.search;
 
-import io.metaphor.masterSpringMvc.viewModel.Tweet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.MatrixVariable;
@@ -12,16 +11,16 @@ import java.util.List;
 
 @Controller
 public class SearchController {
-    private SearchService searchService;
+    private TweeterSearch tweeterSearch;
 
     @Autowired
-    public SearchController(SearchService searchService) {
-        this.searchService = searchService;
+    public SearchController(TweeterSearch tweeterSearch) {
+        this.tweeterSearch = tweeterSearch;
     }
     @RequestMapping("/search/{searchType}")
     public ModelAndView search(@PathVariable String searchType, @MatrixVariable List<String> keywords) {
 
-        List<LightTweet> tweets = searchService.search(searchType,keywords);
+        List<LightTweet> tweets = tweeterSearch.search(searchType,keywords);
         ModelAndView modelAndView = new ModelAndView("resultPage");
         modelAndView.addObject("tweets",tweets);
         modelAndView.addObject("search",String.join(",",keywords));

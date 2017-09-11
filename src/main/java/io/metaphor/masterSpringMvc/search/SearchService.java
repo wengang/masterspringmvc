@@ -10,7 +10,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
-public class SearchService {
+public class SearchService implements TweeterSearch {
     private Tweet[] _tweets={};
 //    private DateFormat
     public SearchService(){
@@ -43,7 +43,8 @@ public class SearchService {
                 "luqing"),"chess player,1 times win gold", dateTime, "zh_CN", 6));
         _tweets=tweets.toArray(_tweets);
     }
-    public List<LightTweet> search(String searchType,List<String> keywords) {
+    @Override
+    public List<LightTweet> search(String searchType, List<String> keywords) {
         List<LightTweet> tweets =
                 Arrays.stream(_tweets)
                         .filter(tweet -> {
