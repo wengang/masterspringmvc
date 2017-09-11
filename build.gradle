@@ -37,6 +37,7 @@ dependencies {
     compile('org.webjars:materializecss:0.100.2')
     compile('org.webjars:jquery:3.2.1')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+	testCompile('com.jayway.jsonpath:json-path')
 }
 
 task wrapper(type: Wrapper) {
