@@ -19,7 +19,6 @@ import java.net.URLConnection;
 import java.util.Locale;
 
 @Controller
-@SessionAttributes("picturePath")
 public class PictureUploadController {
     private final Resource picturesDir;
     private final Resource anonymousPicture;
@@ -32,15 +31,6 @@ public class PictureUploadController {
         this.messageSource = messageSource;
         this.userProfileSession = userProfileSession;
     }
-    @ModelAttribute("picturePath")
-    public Resource picturePath(){
-        return anonymousPicture;
-    }
-
-//    @RequestMapping("upload")
-//    public String uploadPage() {
-//        return "profile/uploadPage";
-//    }
 
     @RequestMapping(value = "profile",params = {"upload"},method = RequestMethod.POST)
     public String onUpload(MultipartFile file, RedirectAttributes redirectAttributes,
