@@ -12,6 +12,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.requiresChannel().anyRequest().requiresSecure()
                 .and()
+//                .headers().cacheControl().disable()
+//                .and()
                 .formLogin()
                 .loginPage("/login")
                 .defaultSuccessUrl("/profile")
