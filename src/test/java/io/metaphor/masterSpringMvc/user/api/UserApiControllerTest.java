@@ -19,8 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.*;
 
 import static org.hamcrest.Matchers.hasSize;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -58,5 +57,33 @@ public class UserApiControllerTest {
                 .extracting(User::getEmail)
                 .containsOnly("bob@spring.io","john@spring.io");
 
+    }
+    @Test
+    public void should_delete_user() throws Exception{
+        this.mockMvc.perform(
+                delete("/api/users/bob@spring.io")
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+        assertThat(userRepository.findAll()).hasSize(0);
+    }
+    @Test
+    public void should_return_not_found_when_deleting_unknown_user() throws Exception {
+        this.mockMvc.perform(
+                delete("/api/users/non-existing@email.com")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
+
+    }
+
+    @Test
+    public void put_should_update_existing_user() throws Exception {
+        User user = new User("ignored@spring.io");
+        this.mockMvc.perform(put("/api/users/bob@spring.io")
+        .content(JsonUtil.toJson(user))
+        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+        assertThat(userRepository.findAll())
+                .extracting(User::getEmail)
+                .containsOnly("bob@spring.io");
     }
 }
