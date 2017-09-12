@@ -23,7 +23,6 @@ repositories {
     maven { url 'http://maven.aliyun.com/mvn/repository/' }
 }
 
-
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.springframework.boot:spring-boot-starter-thymeleaf')
@@ -38,41 +37,8 @@ dependencies {
     compile('org.webjars:jquery:3.2.1')
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile('com.jayway.jsonpath:json-path')
-    testCompile('org.fluentlenium:fluentlenium-assertj:3.3.0')
-    testCompile('com.codeborne:phantomjsdriver:1.4.3')
-    testCompile('org.seleniumhq.selenium:selenium-java:3.5.3')
 }
 
 task wrapper(type: Wrapper) {
     gradleVersion = '4.1'
 }
-//configurations {
-//    integrationTestCompile.extendsFrom(testCompile)
-//    integrationTestRuntime.extendsFrom(testRuntime)
-//}
-//sourceSets {
-//    integrationTest {
-//        compileClasspath += main.output + test.output
-//        runtimeClasspath += main.output + test.output
-//    }
-//}
-//task integrationTest(type: Test) {
-//    testClassesDirs = sourceSets.integrationTest.output.classesDirs
-//    classpath = sourceSets.integrationTest.runtimeClasspath
-//    reports.html.setDestination(file("${reporting.baseDir}/integrationTests"))
-//}
-//
-//
-//allprojects {
-//
-//    gradle.projectsEvaluated {
-//
-//        tasks.withType(JavaCompile) {
-//
-//            options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
-//
-//        }
-//
-//    }
-//
-//}

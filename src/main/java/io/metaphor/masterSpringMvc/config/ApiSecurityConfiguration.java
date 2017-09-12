@@ -2,6 +2,7 @@ package io.metaphor.masterSpringMvc.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -11,7 +12,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 @Configuration
 @Order(1)
-//@EnableGlobalMethodSecurity(securedEnabled = true)
 public class ApiSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureAuth(AuthenticationManagerBuilder auth) throws Exception {
@@ -24,6 +24,8 @@ public class ApiSecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.antMatcher("/api/**")
                 .httpBasic()
+                .and()
+                .headers().cacheControl().disable()
                 .and()
                 .csrf().disable()
                 .authorizeRequests()
