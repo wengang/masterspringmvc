@@ -14,14 +14,14 @@ public class WebConfig {
     public Filter etagFilter() {
         return new ShallowEtagHeaderFilter();
     }
-    @Bean
-    public FilterRegistrationBean etagFilterRegistration() {
-        FilterRegistrationBean registration = new FilterRegistrationBean();
-        registration.setFilter(etagFilter());
-        registration.addUrlPatterns("/*");
-//        registration.addInitParameter("paramName", "paramValue");
-        registration.setName("EtagFilter");
-//        registration.setOrder(6);
-        return registration;
-    }
+//    @Bean
+//    public FilterRegistrationBean etagFilterRegistration() {
+//        FilterRegistrationBean registration = new FilterRegistrationBean();
+//        registration.setFilter(etagFilter());
+//        registration.addUrlPatterns("/*");
+////        registration.addInitParameter("paramName", "paramValue");
+//        registration.setName("EtagFilter");
+////        registration.setOrder(6);
+//        return registration;
+//    }
 }

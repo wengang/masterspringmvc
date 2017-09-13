@@ -17,7 +17,7 @@ public class ApiSecurityConfiguration extends WebSecurityConfigurerAdapter {
     public void configureAuth(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
                 .withUser("user").password("user1").roles("USER").and()
-                .withUser("admin").password("admin").roles("USER","ADMIN");
+                .withUser("admin").password("admin").roles("USER","ADMIN","ACTUATOR");
     }
 
     @Override
